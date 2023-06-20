@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://fonts.googleapis.com/css2?family=Lora&family=Sora:wght@700&family=Ubuntu&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="styles-transactions.css">
+    <title>Cuatomer Records</title>
+</head>
+
+<body>
+    <header>
+
+        <a href="/create.html"> <img id="logo" src="logo.svg" alt="logo" width="200"></a>
+        <nav><span><a href="/create.html">Home </a></span><span><a href="/data">Customer List</a></span><span><a
+                    href="/records">Transaction History</a></span></nav>
+    </header>
+
+    <table class="table table-hover">
+        <div class="scroller">
+            <thead>
+
+                <tr>
+                    <th scope="col">Sender</th>
+                    <th scope="col">Receiver</th>
+                    <th scope="col">Amount</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Time</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <% rows.reverse().map((eachData)=> { %>
+                    <tr>
+                        <th scope="row"><%- eachData.sender %></th>
+                        <td><%- eachData.receiver %></td>
+                        <td><%- eachData.amount %></td>
+                        <td><%- eachData.date %></td>
+                        <td><%- eachData.time %></td>
+
+                    </tr>
+                    <% }) %>
+            </tbody>
+        </div>
+    </table>
+    <footer>
+        <p>Made by Anshuman Chaurasia</p>
+        <p>Connect with me:
+            <a href="https://www.linkedin.com/in/anshuman-chaurasia-b518b419a/" target="_blank"> <i
+                    class="fa-brands fa-linkedin fa-2xl" style="color: #c9c9c9;"></i></a>
+            <a href="https://github.com/ansh-chrs" target="_blank"> <i class="fa-brands fa-github fa-2xl"
+                    style="color: #c9c9c9;"></i></a>
+        </p>
+    </footer>
+</body>
+
+</html>

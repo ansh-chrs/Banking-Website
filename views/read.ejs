@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lora&family=Sora:wght@700&family=Ubuntu&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <title>Customer Records</title>
+
+</head>
+
+<body>
+    <header>
+
+        <a href="/create.html"> <img id="logo" src="logo.svg" alt="logo" width="200"></a>
+        <nav><span><a href="/create.html">Home </a></span><span><a href="/data">Customer List</a></span><span><a
+                    href="/records">Transaction History</a></span></nav>
+    </header>
+
+    <table id="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Balance</th>
+                <th>Operation</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% rows.map((eachData)=> { %>
+                <tr class="under">
+                    <th><%- eachData.ID %></th>
+                    <td><%- eachData.Name %></td>
+                    <td><%- eachData.Email %></td>
+                    <td><%- eachData.Balance %></td>
+                    <td><button id="trans-btn" value="<%- eachData.Name %> <%- eachData.Balance %>" class="openModal">Transfer
+                            Money</button></td>
+                </tr>
+                <% }) %>
+
+        </tbody>
+    </table>
+
+
+
+    <dialog class="modal" id="modal">
+        <h2>Transfer Money</h2>
+        <form action="http://localhost:3000/trans" id="form" method="post">
+            <label for="sender">Transfer From</label>
+            <input readonly type="text" value="" name="send" id="sender">
+            <label for="to">Transfer To</label>
+            <select required name="receive" id="to">
+                <option value="">--Select Receiver Name--</option>
+                <% rows.map((data)=>{ %>
+                    <option><%-data.Name %></option>
+                    <% }) %>
+            </select>
+
+            <label for="amt">Enter Amount</label>
+
+            <input required value="" name="amt" id="amt" type="number" min="1" max="">
+            <% let currentdate=new Date(); %>
+                <% let date=currentdate.getDate() + "/" + (currentdate.getMonth()+1) + "/" +
+                    currentdate.getFullYear();%>
+                    <% let time=currentdate.getHours() + ":" + currentdate.getMinutes() + ":" +
+                        currentdate.getSeconds();%>
+                        <input type="hidden" name="date" value="<%-date%>">
+                        <input type="hidden" name="time" value="<%-time%>">
+
+                        <button id="submit" type="submit">Transfer</button>
+                        <button id="close" class="button close">Close</button>
+        </form>
+    </dialog>
+
+
+
+    <footer>
+        <p>Made by Anshuman Chaurasia</p>
+        <p>Connect with me:
+            <a href="https://www.linkedin.com/in/anshuman-chaurasia-b518b419a/" target="_blank"> <i
+                    class="fa-brands fa-linkedin fa-2xl" style="color: #c9c9c9;"></i></a>
+            <a href="https://github.com/ansh-chrs" target="_blank"> <i class="fa-brands fa-github fa-2xl"
+                    style="color: #c9c9c9;"></i></a>
+        </p>
+    </footer>
+    <script src="script.js" type="text/javascript"></script>
+
+</body>
+
+</html>
